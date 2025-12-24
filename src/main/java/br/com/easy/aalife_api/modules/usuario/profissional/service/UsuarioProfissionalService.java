@@ -71,7 +71,7 @@ public class UsuarioProfissionalService {
     }
 
     public void validarEmailParaAtualizar(String email, Integer id) {
-        if (repository.existsByEmailAndIdNot(email, id)) {
+        if (repository.existsByUsuarioCredenciaisEmailAndIdNot(email, id)) {
             throw new ValidationException(EX_USUARIO_JA_CADASTRADO);
         }
     }
@@ -83,7 +83,7 @@ public class UsuarioProfissionalService {
     }
 
     private void validarEmailExistente(String email) {
-        if (repository.existsByEmail(email)) {
+        if (repository.existsByUsuarioCredenciaisEmail(email)) {
             throw new ValidationException(EX_USUARIO_JA_CADASTRADO);
         }
     }

@@ -54,7 +54,7 @@ public class UsuarioAdministradorService {
     }
 
     private void validarEmailExistente(String email) {
-        if (repository.existsByEmail(email)) {
+        if (repository.existsByUsuarioCredenciaisEmail(email)) {
             throw new ValidationException(EX_USUARIO_JA_CADASTRADO);
         }
     }

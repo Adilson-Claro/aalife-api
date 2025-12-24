@@ -25,8 +25,8 @@ public class Cidade {
     private String nome;
 
     @ManyToOne
-    @JoinColumn(columnDefinition = "estado_id")
-    private Estado estadoId;
+    @JoinColumn(name = "estado_id", nullable = false)
+    private Estado estado;
 
     @OneToMany(mappedBy = "cidade")
     private List<Endereco> enderecos;
@@ -40,7 +40,7 @@ public class Cidade {
     public static Cidade of(CidadeRequest request) {
         return Cidade.builder()
                 .nome(request.nome())
-                .estadoId(new Estado(request.estadoId()))
+                .estado(new Estado(request.estadoId()))
                 .codigoIbge(request.codigoIbge())
                 .build();
     }

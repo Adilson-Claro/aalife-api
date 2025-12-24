@@ -28,6 +28,7 @@ public class EspecialidadeService {
 
     public void salvar(EspecialidadeRequest request) {
         validarEspecialidadeExistente(request.nome());
+        validarNome(request.nome());
         var profissao = service.findById(request.profissaoId());
 
         var especialidade = Especialidade.of(request, profissao);
@@ -37,12 +38,11 @@ public class EspecialidadeService {
         repository.save(especialidade);
     }
 
-    //TODO VALIDAR NA SERVICE NULL OU VAZIO AS REQUEST DE ATUALIZACAO
-    public void editar(Integer id, EspecialidadeRequest request) {
+    public void editar(Integer id, String nome) {
         var especialidade = findById(id);
-        validarEspecialidadeExistenteParaEditar(request.nome(), id);
+        validarEspecialidadeExistenteParaEditar(nome, id);
 
-        especialidade.editar(request.nome());
+        especialidade.editar(nome);
         repository.save(especialidade);
     }
 
@@ -65,9 +65,9 @@ public class EspecialidadeService {
         return EspecialidadeResponse.of(especialidade);
     }
 
-    private void validarProfissaoId(Integer id) {
-        if (id != null) {
-            throw new ValidationException("Profissao nao pode ser nulo ou vazio.");
+    private void validarNome(String nome) {
+        if (nome.isBlank()) {
+            throw new ValidationException("O campo nome e obrigatorio.");
         }
     }
 

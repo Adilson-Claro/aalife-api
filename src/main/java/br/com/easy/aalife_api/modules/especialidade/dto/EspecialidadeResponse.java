@@ -11,7 +11,7 @@ public record EspecialidadeResponse(String nome,
         return new EspecialidadeResponse(
                 especialidade.getNome(),
                 especialidade.getSituacao(),
-                especialidade.getProfissaoId().getId()
+                especialidade.getProfissao().getId()
         );
     }
 }

@@ -7,7 +7,7 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 public interface UsuarioProfissionalRepository extends JpaRepository<UsuarioProfissional, Integer>,
         QuerydslPredicateExecutor<UsuarioProfissional> {
 
-    boolean existsByCnpj(String cpf);
+    boolean existsByCnpj(String cnpj);
 
     boolean existsByTelefone(String telefone);
 
@@ -15,7 +15,7 @@ public interface UsuarioProfissionalRepository extends JpaRepository<UsuarioProf
 
     boolean existsByNumeroConselho(String numeroConselho);
 
-    boolean existsByEmailAndIdNot(String email, Integer id);
+    boolean existsByUsuarioCredenciaisEmailAndIdNot(String email, Integer id);
 
-    boolean existsByEmail(String email);
+    boolean existsByUsuarioCredenciaisEmail(String email);
 }

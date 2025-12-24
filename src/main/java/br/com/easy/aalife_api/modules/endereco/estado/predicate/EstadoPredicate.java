@@ -3,7 +3,7 @@ package br.com.easy.aalife_api.modules.endereco.estado.predicate;
 import br.com.easy.aalife_api.comum.predicate.PredicateBase;
 import io.micrometer.common.util.StringUtils;
 
-import static br.com.easy.aalife_api.modules.estado.model.QEstado.estado;
+import static br.com.easy.aalife_api.modules.endereco.estado.model.QEstado.estado;
 
 public class EstadoPredicate extends PredicateBase {
 

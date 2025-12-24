@@ -3,7 +3,7 @@ package br.com.easy.aalife_api.modules.endereco.endereco.predicate;
 import br.com.easy.aalife_api.comum.predicate.PredicateBase;
 import org.apache.commons.lang3.StringUtils;
 
-import static br.com.easy.aalife_api.modules.endereco.model.QEndereco.endereco;
+import static br.com.easy.aalife_api.modules.endereco.endereco.model.QEndereco.endereco;
 
 public class EnderecoPredicate extends PredicateBase {
 

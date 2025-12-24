@@ -23,9 +23,9 @@ public class Especialidade {
     @Column(name = "nome", nullable = false, unique = true)
     private String nome;
 
-    @ManyToOne
-    @JoinColumn(name = "profissao_id", nullable = false)
-    private Profissao profissaoId;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "profissao_id")
+    private Profissao profissao;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "situacao", nullable = false)
@@ -34,7 +34,7 @@ public class Especialidade {
     public static Especialidade of(EspecialidadeRequest request, Profissao profissao) {
         return Especialidade.builder()
                 .nome(request.nome())
-                .profissaoId(profissao)
+                .profissao(profissao)
                 .situacao(ESituacao.A)
                 .build();
     }

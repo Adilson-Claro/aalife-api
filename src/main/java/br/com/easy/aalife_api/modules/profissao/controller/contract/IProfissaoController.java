@@ -24,7 +24,7 @@ public interface IProfissaoController {
     @Operation(description = "Endpoint responsavel por buscar profissoes por fitros.")
     Page<ProfissaoResponse> buscarProfissoes(ProfissaoFiltros filtros, Pageable pageable);
 
-    @GetMapping
+    @GetMapping("{id}")
     @Operation(description = "Endpoint responsavel por buscar profissao por id.")
     ProfissaoResponse buscarProfissao(@PathVariable Integer id);
 

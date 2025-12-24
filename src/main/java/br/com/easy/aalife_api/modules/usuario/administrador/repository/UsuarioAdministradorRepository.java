@@ -11,5 +11,5 @@ public interface UsuarioAdministradorRepository extends JpaRepository<UsuarioAdm
 
     boolean existsByTelefoneAndIdNot(String telefone, Integer id);
 
-    boolean existsByEmail(String email);
+    boolean existsByUsuarioCredenciaisEmail(String email);
 }

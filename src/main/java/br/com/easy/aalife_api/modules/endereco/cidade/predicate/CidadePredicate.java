@@ -3,7 +3,7 @@ package br.com.easy.aalife_api.modules.endereco.cidade.predicate;
 import br.com.easy.aalife_api.comum.predicate.PredicateBase;
 import org.apache.commons.lang3.StringUtils;
 
-import static br.com.easy.aalife_api.modules.cidade.model.QCidade.cidade;
+import static br.com.easy.aalife_api.modules.endereco.cidade.model.QCidade.cidade;
 
 public class CidadePredicate extends PredicateBase {
 

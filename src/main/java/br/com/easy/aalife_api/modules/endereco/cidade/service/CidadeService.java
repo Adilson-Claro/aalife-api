@@ -20,22 +20,51 @@ public class CidadeService {
     private final CidadeRepository repository;
 
     public void salvar(CidadeRequest request) {
+        validarEstadoId(request.estadoId());
+        validarNomeCidade(request.nome());
         validarCidadeExistente(request.nome());
         validarCodigoIbge(request.codigoIbge());
+
         var cidade = Cidade.of(request);
+
         repository.save(cidade);
     }
 
     public void editar(Integer id, CidadeRequest request) {
         var cidade = findById(id);
+
         validarCodigoIbge(request.codigoIbge());
         validarCidadeExistenteParaEditar(id, request.nome());
+
         cidade.editar(request);
+
         repository.save(cidade);
     }
 
     public Page<CidadeResponse> buscarCidade(CidadeFiltros filtros, Pageable pageable) {
         return repository.findAll(filtros.toPredicate(), pageable).map(CidadeResponse::of);
+    }
+
+    public CidadeResponse buscarPorId(Integer id) {
+        var ciade = findById(id);
+
+        return CidadeResponse.of(ciade);
+    }
+
+    public Page<CidadeResponse> buscarTodas(Pageable pageable) {
+        return repository.findAll(pageable).map(CidadeResponse::of);
+    }
+
+    private void validarNomeCidade(String nome) {
+        if (nome.isBlank()) {
+            throw new ValidationException("O campo nome e obrigatorio.");
+        }
+    }
+
+    private void validarEstadoId(Integer estadoId) {
+        if (estadoId == null) {
+            throw new ValidationException("O campo estado id e obrigatorio");
+        }
     }
 
     private void validarCidadeExistenteParaEditar(Integer id, String nome) {

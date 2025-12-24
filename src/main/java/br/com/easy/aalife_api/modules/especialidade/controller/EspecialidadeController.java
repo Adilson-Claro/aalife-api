@@ -24,7 +24,7 @@ public class EspecialidadeController implements IEspecialidadeController {
     }
 
     public void editar(Integer id, String nome) {
-        service.editar(id, request);
+        service.editar(id, nome);
     }
 
     public Page<EspecialidadeResponse> buscarEspecialidades(EspecialidadeFiltros filtros, Pageable pageable) {
