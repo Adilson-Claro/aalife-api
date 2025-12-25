@@ -1,6 +1,6 @@
 package br.com.easy.aalife_api.modules.usuario.profissional.service;
 
-import br.com.easy.aalife_api.comum.enums.ESituacao;
+import br.com.easy.aalife_api.modules.comum.enums.ESituacao;
 import br.com.easy.aalife_api.config.exceptions.NotFoundException;
 import br.com.easy.aalife_api.config.exceptions.ValidationException;
 import br.com.easy.aalife_api.modules.usuario.profissional.dto.UsuarioProfissionalFiltros;
@@ -14,11 +14,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import static br.com.easy.aalife_api.comum.validator.AreaSaudeValidator.validarOrgaoRegulamentador;
-import static br.com.easy.aalife_api.comum.utils.ConstantsUtils.EX_USUARIO_JA_CADASTRADO;
-import static br.com.easy.aalife_api.comum.utils.ConstantsUtils.EX_USUARIO_NAO_ENCONTRADO;
-import static br.com.easy.aalife_api.comum.utils.CpfCnpjUtils.validarCnpj;
-import static br.com.easy.aalife_api.comum.utils.TelefoneUtils.validarTelefone;
+import static br.com.easy.aalife_api.modules.comum.validator.AreaSaudeValidator.validarOrgaoRegulamentador;
+import static br.com.easy.aalife_api.modules.comum.utils.ConstantsUtils.EX_USUARIO_JA_CADASTRADO;
+import static br.com.easy.aalife_api.modules.comum.utils.ConstantsUtils.EX_USUARIO_NAO_ENCONTRADO;
+import static br.com.easy.aalife_api.modules.comum.utils.CpfCnpjUtils.validarCnpj;
+import static br.com.easy.aalife_api.modules.comum.utils.TelefoneUtils.validarTelefone;
 
 @Service
 @RequiredArgsConstructor

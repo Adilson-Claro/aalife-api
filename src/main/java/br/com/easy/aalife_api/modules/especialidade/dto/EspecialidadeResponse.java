@@ -1,6 +1,6 @@
 package br.com.easy.aalife_api.modules.especialidade.dto;
 
-import br.com.easy.aalife_api.comum.enums.ESituacao;
+import br.com.easy.aalife_api.modules.comum.enums.ESituacao;
 import br.com.easy.aalife_api.modules.especialidade.model.Especialidade;
 
 public record EspecialidadeResponse(String nome,

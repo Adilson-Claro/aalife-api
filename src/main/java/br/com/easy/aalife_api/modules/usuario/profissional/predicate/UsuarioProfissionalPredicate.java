@@ -1,8 +1,8 @@
 package br.com.easy.aalife_api.modules.usuario.profissional.predicate;
 
-import br.com.easy.aalife_api.comum.enums.ESituacao;
-import br.com.easy.aalife_api.comum.enums.ETipoOrgaoRegulamentador;
-import br.com.easy.aalife_api.comum.predicate.PredicateBase;
+import br.com.easy.aalife_api.modules.comum.enums.ESituacao;
+import br.com.easy.aalife_api.modules.comum.enums.ETipoOrgaoRegulamentador;
+import br.com.easy.aalife_api.modules.comum.predicate.PredicateBase;
 import io.micrometer.common.util.StringUtils;
 
 import static br.com.easy.aalife_api.modules.usuario.profissional.model.QUsuarioProfissional.usuarioProfissional;

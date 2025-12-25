@@ -11,7 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import static br.com.easy.aalife_api.comum.utils.IbgeValidator.validarCodigoIbge;
+import static br.com.easy.aalife_api.modules.comum.utils.IbgeValidator.validarCodigoIbge;
 
 @Service
 @RequiredArgsConstructor

@@ -1,6 +1,6 @@
 package br.com.easy.aalife_api.modules.profissao.service;
 
-import br.com.easy.aalife_api.comum.enums.ESituacao;
+import br.com.easy.aalife_api.modules.comum.enums.ESituacao;
 import br.com.easy.aalife_api.config.exceptions.ValidationException;
 import br.com.easy.aalife_api.modules.profissao.dto.ProfissaoAtualizacaoRequest;
 import br.com.easy.aalife_api.modules.profissao.dto.ProfissaoFiltros;
@@ -13,9 +13,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import static br.com.easy.aalife_api.comum.validator.AreaSaudeValidator.validarOrgaoRegulamentador;
-import static br.com.easy.aalife_api.comum.utils.ConstantsUtils.EX_PROFISSAO_JA_CADASTRADA;
-import static br.com.easy.aalife_api.comum.utils.ConstantsUtils.EX_PROFISSAO_NAO_ENCONTRADA;
+import static br.com.easy.aalife_api.modules.comum.validator.AreaSaudeValidator.validarOrgaoRegulamentador;
+import static br.com.easy.aalife_api.modules.comum.utils.ConstantsUtils.EX_PROFISSAO_JA_CADASTRADA;
+import static br.com.easy.aalife_api.modules.comum.utils.ConstantsUtils.EX_PROFISSAO_NAO_ENCONTRADA;
 
 @Service
 @RequiredArgsConstructor

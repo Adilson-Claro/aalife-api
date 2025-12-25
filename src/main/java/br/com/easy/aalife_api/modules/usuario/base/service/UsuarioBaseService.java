@@ -1,6 +1,6 @@
 package br.com.easy.aalife_api.modules.usuario.base.service;
 
-import br.com.easy.aalife_api.comum.enums.ESituacao;
+import br.com.easy.aalife_api.modules.comum.enums.ESituacao;
 import br.com.easy.aalife_api.config.exceptions.ValidationException;
 import br.com.easy.aalife_api.modules.usuario.base.dto.UsuarioBaseFiltros;
 import br.com.easy.aalife_api.modules.usuario.base.dto.UsuarioBaseRequest;
@@ -13,9 +13,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import static br.com.easy.aalife_api.comum.utils.ConstantsUtils.EX_USUARIO_JA_CADASTRADO;
-import static br.com.easy.aalife_api.comum.utils.ConstantsUtils.EX_USUARIO_NAO_ENCONTRADO;
-import static br.com.easy.aalife_api.comum.utils.EmailUtils.validarEmail;
+import static br.com.easy.aalife_api.modules.comum.utils.ConstantsUtils.EX_USUARIO_JA_CADASTRADO;
+import static br.com.easy.aalife_api.modules.comum.utils.ConstantsUtils.EX_USUARIO_NAO_ENCONTRADO;
+import static br.com.easy.aalife_api.modules.comum.utils.EmailUtils.validarEmail;
 
 @Service
 @RequiredArgsConstructor

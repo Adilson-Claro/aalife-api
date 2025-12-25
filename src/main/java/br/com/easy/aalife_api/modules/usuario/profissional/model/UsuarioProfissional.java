@@ -1,6 +1,6 @@
 package br.com.easy.aalife_api.modules.usuario.profissional.model;
 
-import br.com.easy.aalife_api.comum.enums.*;
+import br.com.easy.aalife_api.modules.comum.enums.*;
 import br.com.easy.aalife_api.modules.endereco.endereco.model.Endereco;
 import br.com.easy.aalife_api.modules.profissao.model.ProfissaoEspecialidade;
 import br.com.easy.aalife_api.modules.usuario.pessoa.juridica.PessoaJuridica;

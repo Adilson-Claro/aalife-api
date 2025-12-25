@@ -1,4 +1,4 @@
-package br.com.easy.aalife_api.comum.utils;
+package br.com.easy.aalife_api.modules.comum.utils;
 
 import br.com.easy.aalife_api.config.exceptions.ValidationException;
 import lombok.experimental.UtilityClass;

@@ -1,6 +1,6 @@
 package br.com.easy.aalife_api.modules.usuario.base.dto;
 
-import br.com.easy.aalife_api.comum.enums.ESexo;
+import br.com.easy.aalife_api.modules.comum.enums.ESexo;
 import jakarta.validation.constraints.NotBlank;
 
 import java.math.BigDecimal;

@@ -1,7 +1,6 @@
 package br.com.easy.aalife_api.modules.especialidade.model;
 
-import br.com.easy.aalife_api.comum.enums.ESituacao;
-import br.com.easy.aalife_api.modules.especialidade.dto.EspecialidadeAtualizacaoRequest;
+import br.com.easy.aalife_api.modules.comum.enums.ESituacao;
 import br.com.easy.aalife_api.modules.especialidade.dto.EspecialidadeRequest;
 import br.com.easy.aalife_api.modules.profissao.model.Profissao;
 import jakarta.persistence.*;

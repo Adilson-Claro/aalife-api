@@ -1,4 +1,4 @@
-package br.com.easy.aalife_api.comum.utils;
+package br.com.easy.aalife_api.modules.comum.utils;
 
 public class ConstantsUtils {
 

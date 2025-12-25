@@ -1,15 +1,15 @@
-package br.com.easy.aalife_api.comum.enums;
+package br.com.easy.aalife_api.modules.comum.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum ERole {
+public enum ETipoUsuario {
 
+    BASE("Usuario comum"),
     ADMINISTRADOR("Administrador"),
-    BASE("Usuário comum"),
-    PROFISSIONAL("Usuário profissional");
+    PROFISSIONAL("Profissional de saude");
 
     private final String descricao;
 }

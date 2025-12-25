@@ -1,10 +1,8 @@
-package br.com.easy.aalife_api.comum.validator;
+package br.com.easy.aalife_api.modules.comum.validator;
 
-import br.com.easy.aalife_api.comum.enums.EAreaSaude;
-import br.com.easy.aalife_api.comum.enums.ETipoOrgaoRegulamentador;
+import br.com.easy.aalife_api.modules.comum.enums.EAreaSaude;
+import br.com.easy.aalife_api.modules.comum.enums.ETipoOrgaoRegulamentador;
 import br.com.easy.aalife_api.config.exceptions.ValidationException;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 import java.util.Map;
 import java.util.Set;

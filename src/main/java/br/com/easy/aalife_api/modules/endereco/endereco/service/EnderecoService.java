@@ -14,8 +14,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import static br.com.easy.aalife_api.comum.utils.CepValidator.normalizarCep;
-import static br.com.easy.aalife_api.comum.utils.CepValidator.validarCep;
+import static br.com.easy.aalife_api.modules.comum.utils.CepValidator.normalizarCep;
+import static br.com.easy.aalife_api.modules.comum.utils.CepValidator.validarCep;
 
 @Service
 @RequiredArgsConstructor

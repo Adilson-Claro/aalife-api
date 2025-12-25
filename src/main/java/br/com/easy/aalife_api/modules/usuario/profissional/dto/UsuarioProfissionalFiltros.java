@@ -1,7 +1,7 @@
 package br.com.easy.aalife_api.modules.usuario.profissional.dto;
 
-import br.com.easy.aalife_api.comum.enums.ESituacao;
-import br.com.easy.aalife_api.comum.enums.ETipoOrgaoRegulamentador;
+import br.com.easy.aalife_api.modules.comum.enums.ESituacao;
+import br.com.easy.aalife_api.modules.comum.enums.ETipoOrgaoRegulamentador;
 import br.com.easy.aalife_api.modules.usuario.profissional.predicate.UsuarioProfissionalPredicate;
 import com.querydsl.core.BooleanBuilder;
 import lombok.AllArgsConstructor;

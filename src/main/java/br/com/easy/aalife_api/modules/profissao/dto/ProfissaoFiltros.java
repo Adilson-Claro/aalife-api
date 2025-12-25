@@ -1,6 +1,6 @@
 package br.com.easy.aalife_api.modules.profissao.dto;
 
-import br.com.easy.aalife_api.comum.enums.ETipoOrgaoRegulamentador;
+import br.com.easy.aalife_api.modules.comum.enums.ETipoOrgaoRegulamentador;
 import br.com.easy.aalife_api.modules.profissao.predicate.ProfissaoPredicate;
 import com.querydsl.core.BooleanBuilder;
 import lombok.AllArgsConstructor;

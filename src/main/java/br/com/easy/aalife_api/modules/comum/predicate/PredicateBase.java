@@ -1,4 +1,4 @@
-package br.com.easy.aalife_api.comum.predicate;
+package br.com.easy.aalife_api.modules.comum.predicate;
 
 import com.querydsl.core.BooleanBuilder;
 

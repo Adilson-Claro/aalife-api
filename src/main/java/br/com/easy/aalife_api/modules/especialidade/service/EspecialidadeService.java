@@ -1,12 +1,10 @@
 package br.com.easy.aalife_api.modules.especialidade.service;
 
-import br.com.easy.aalife_api.comum.enums.ESituacao;
+import br.com.easy.aalife_api.modules.comum.enums.ESituacao;
 import br.com.easy.aalife_api.config.exceptions.ValidationException;
-import br.com.easy.aalife_api.modules.especialidade.dto.EspecialidadeAtualizacaoRequest;
 import br.com.easy.aalife_api.modules.especialidade.dto.EspecialidadeFiltros;
 import br.com.easy.aalife_api.modules.especialidade.dto.EspecialidadeRequest;
 import br.com.easy.aalife_api.modules.especialidade.dto.EspecialidadeResponse;
-import br.com.easy.aalife_api.modules.profissao.dto.ProfissaoFiltros;
 import br.com.easy.aalife_api.modules.especialidade.model.Especialidade;
 import br.com.easy.aalife_api.modules.profissao.model.ProfissaoEspecialidade;
 import br.com.easy.aalife_api.modules.especialidade.repository.EspecialidadeRepository;
@@ -16,8 +14,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import static br.com.easy.aalife_api.comum.utils.ConstantsUtils.EX_ESPECIALIDADE_JA_CADASTRADA;
-import static br.com.easy.aalife_api.comum.utils.ConstantsUtils.EX_ESPECIALIDADE_NAO_ENCONTRADA;
+import static br.com.easy.aalife_api.modules.comum.utils.ConstantsUtils.EX_ESPECIALIDADE_JA_CADASTRADA;
+import static br.com.easy.aalife_api.modules.comum.utils.ConstantsUtils.EX_ESPECIALIDADE_NAO_ENCONTRADA;
 
 @Service
 @RequiredArgsConstructor

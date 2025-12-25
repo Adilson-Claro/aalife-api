@@ -1,9 +1,9 @@
 package br.com.easy.aalife_api.modules.usuario.base.model;
 
-import br.com.easy.aalife_api.comum.enums.ERole;
-import br.com.easy.aalife_api.comum.enums.ESexo;
-import br.com.easy.aalife_api.comum.enums.ESituacao;
-import br.com.easy.aalife_api.comum.enums.ETipoUsuario;
+import br.com.easy.aalife_api.modules.comum.enums.ERole;
+import br.com.easy.aalife_api.modules.comum.enums.ESexo;
+import br.com.easy.aalife_api.modules.comum.enums.ESituacao;
+import br.com.easy.aalife_api.modules.comum.enums.ETipoUsuario;
 import br.com.easy.aalife_api.modules.usuario.usuariocredenciais.UsuarioCredenciais;
 import br.com.easy.aalife_api.modules.usuario.base.dto.UsuarioBaseRequest;
 import br.com.easy.aalife_api.modules.usuario.pessoa.fisica.PessoaFisica;
