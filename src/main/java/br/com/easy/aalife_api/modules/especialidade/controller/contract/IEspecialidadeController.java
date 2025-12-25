@@ -12,22 +12,22 @@ import org.springframework.web.bind.annotation.*;
 public interface IEspecialidadeController {
 
     @PostMapping
-    @Operation(description = "Endpoint responsavel pelo cadastro de especialidades.")
+    @Operation(description = "Endpoint responsável pelo cadastro de especialidades.")
     void salvar(@RequestBody EspecialidadeRequest request);
 
     @PutMapping("{id}/editar")
-    @Operation(description = "Endpoint responsavel por editar uma especialidade.")
+    @Operation(description = "Endpoint responsável por editar uma especialidade.")
     void editar(@PathVariable Integer id, @RequestBody @NotBlank String nome);
 
     @GetMapping
-    @Operation(description = "Endpoint responsavel por buscar especialidades por fitros.")
+    @Operation(description = "Endpoint responsável por buscar especialidades por fitros.")
     Page<EspecialidadeResponse> buscarEspecialidades(EspecialidadeFiltros filtros, Pageable pageable);
 
     @GetMapping("{id}")
-    @Operation(description = "Endpoint responsavel por buscar especialidade por id.")
+    @Operation(description = "Endpoint responsável por buscar especialidade por id.")
     EspecialidadeResponse buscarEspecialidade(@PathVariable Integer id);
 
     @PutMapping("{id}/alterar-situacao")
-    @Operation(description = "Endpoint responsavel por alterar a situacao de uma especialidade.")
+    @Operation(description = "Endpoint responsável por alterar a situação de uma especialidade.")
     void alterarSituacao(@PathVariable Integer id);
 }

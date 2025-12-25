@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import static br.com.easy.aalife_api.modules.comum.utils.CepValidator.normalizarCep;
 import static br.com.easy.aalife_api.modules.comum.utils.CepValidator.validarCep;
+import static br.com.easy.aalife_api.modules.comum.utils.ConstantsUtils.EX_ENDERECO_NAO_ENCONTRADO;
 
 @Service
 @RequiredArgsConstructor
@@ -47,6 +48,6 @@ public class EnderecoService {
 
     private Endereco findById(Integer id) {
         return repository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Endereco nao encontrado."));
+                .orElseThrow(() -> new NotFoundException(EX_ENDERECO_NAO_ENCONTRADO));
     }
 }

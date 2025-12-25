@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface IUsuarioAdministradorController {
 
     @PostMapping
-    @Operation(description = "Endpoint responsavel por cadastrar um administrador.")
+    @Operation(description = "Endpoint responsável por cadastrar um administrador.")
     void salvar(@RequestBody @Valid UsuarioAdministradorRequest request);
 
     @PutMapping("{id}/editar")
-    @Operation(description = "Endpoint responsavel por editar um administrador.")
+    @Operation(description = "Endpoint responsável por editar um administrador.")
     void editar(@PathVariable Integer id, @RequestBody UsuarioAdministradorRequest request);
 
     @PutMapping("{id}")
-    @Operation(description = "Endpoint responsavel por alterar a situacao de um administrador.")
+    @Operation(description = "Endpoint responsável por alterar a situação de um administrador.")
     void alterarSituacao(@PathVariable Integer id);
 }

@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface IEstadoController {
 
     @GetMapping
-    @Operation(description = "Endpoint responsavel por buscar estados por filtros.")
+    @Operation(description = "Endpoint responsável por buscar estados por filtros.")
     Page<EstadoResponse> buscarEstados(EstadoFiltros filtros, Pageable pageable);
+
+    @GetMapping("buscar-todos")
+    @Operation(description = "Endpoint responsável por buscar todos estados.")
+    Page<EstadoResponse> buscarTodos(Pageable pageable);
 }

@@ -49,7 +49,7 @@ public class UsuarioAdministradorService {
 
     private void validarSituacaoAtiva(ESituacao situacao) {
         if (situacao != ESituacao.A) {
-            throw new ValidationException("Nao e possivel atualizar um usuario inativo.");
+            throw new ValidationException("Não é possivel atualizar um usuário inativo.");
         }
     }
 
@@ -65,7 +65,7 @@ public class UsuarioAdministradorService {
     }
 
     private void validarCpfExistente(String cpf) {
-        if (cpf != null && repository.existsByCpf(cpf)) {
+        if (repository.existsByCpf(cpf)) {
             throw new ValidationException(EX_USUARIO_JA_CADASTRADO);
         }
     }

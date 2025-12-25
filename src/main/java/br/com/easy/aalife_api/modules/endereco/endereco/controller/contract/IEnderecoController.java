@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.*;
 public interface IEnderecoController {
 
     @PostMapping
-    @Operation(description = "Endpoint responsavel por salvar um endereco.")
+    @Operation(description = "Endpoint responsável por salvar um endereço.")
     void salvar(@RequestBody @Valid EnderecoRequest request);
 
     @PutMapping("{id}/editar")
-    @Operation(description = "Endpoint responsavel por editar um endereco.")
+    @Operation(description = "Endpoint responsável por editar um endereço.")
     void editar(@PathVariable Integer id, @RequestBody @Valid EnderecoAtualizacaoRequest request);
 
     @GetMapping
-    @Operation(description = "Endpoint responsavel por buscar enderecos.")
+    @Operation(description = "Endpoint responsável por buscar endereços.")
     Page<EnderecoResponse> buscarEndereco(EnderecoFiltros filtros, Pageable pageable);
 }

@@ -65,7 +65,7 @@ public class EspecialidadeService {
 
     private void validarNome(String nome) {
         if (nome.isBlank()) {
-            throw new ValidationException("O campo nome e obrigatorio.");
+            throw new ValidationException("O campo nome é obrigatório.");
         }
     }
 

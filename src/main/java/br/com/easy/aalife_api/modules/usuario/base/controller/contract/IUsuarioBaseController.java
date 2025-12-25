@@ -11,23 +11,23 @@ import org.springframework.web.bind.annotation.*;
 
 public interface IUsuarioBaseController {
 
-    @PostMapping("cadastrar")
-    @Operation(summary = "Endpoint responsavel pelo cadastro de usuario base.")
+    @PostMapping
+    @Operation(summary = "Endpoint responsável pelo cadastro de usuário base.")
     void salvar(@RequestBody @Valid UsuarioBaseRequest request);
 
     @PutMapping("{id}/editar")
-    @Operation(summary = "Endpoint responsavel pela edicao de usuarios base")
+    @Operation(summary = "Endpoint responsável pela edicao de usuários base.")
     void editar(@PathVariable Integer id, @RequestBody UsuarioBaseRequest request);
 
     @PutMapping("{id}/alterar-situacao")
-    @Operation(summary = "Endpoint responsavel por alterar a situacao de um usuario base")
+    @Operation(summary = "Endpoint responsável por alterar a situação de um usuário base.")
     void alterarSituacao(@PathVariable Integer id);
 
     @GetMapping("{id}")
-    @Operation(summary = "Endpoint responsavel por buscar usuario base por id")
+    @Operation(summary = "Endpoint responsável por buscar um usuário base por id.")
     UsuarioBaseResponse buscarPorId(@PathVariable Integer id);
 
     @GetMapping
-    @Operation(summary = "Endpoint responsavel por buscar usuarios todos usuarios base com filtros")
+    @Operation(summary = "Endpoint responsável por buscar usuários base por filtros.")
     Page<UsuarioBaseResponse> buscarUsuarios(UsuarioBaseFiltros filtros, Pageable pageable);
 }

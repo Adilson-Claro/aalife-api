@@ -11,6 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import static br.com.easy.aalife_api.modules.comum.utils.ConstantsUtils.EX_CIDADE_JA_CADASTRADA;
+import static br.com.easy.aalife_api.modules.comum.utils.ConstantsUtils.EX_CIDADE_NAO_ENCONTRADA;
 import static br.com.easy.aalife_api.modules.comum.utils.IbgeValidator.validarCodigoIbge;
 
 @Service
@@ -69,18 +71,18 @@ public class CidadeService {
 
     private void validarCidadeExistenteParaEditar(Integer id, String nome) {
         if (repository.existsByNomeAndIdNot(nome, id)) {
-            throw new ValidationException("Esta cidade ja esta cadastrada.");
+            throw new ValidationException(EX_CIDADE_JA_CADASTRADA);
         }
     }
 
     private void validarCidadeExistente(String nome) {
         if (repository.existsByNome(nome)) {
-            throw new ValidationException("Esta cidade ja esta cadastrada.");
+            throw new ValidationException(EX_CIDADE_JA_CADASTRADA);
         }
     }
 
     public Cidade findById(Integer id) {
         return repository.findById(id)
-                .orElseThrow(() -> new ValidationException("Cidade nao encontrada"));
+                .orElseThrow(() -> new ValidationException(EX_CIDADE_NAO_ENCONTRADA));
     }
 }

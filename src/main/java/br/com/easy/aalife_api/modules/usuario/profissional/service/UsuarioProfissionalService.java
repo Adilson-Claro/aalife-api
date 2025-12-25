@@ -3,6 +3,7 @@ package br.com.easy.aalife_api.modules.usuario.profissional.service;
 import br.com.easy.aalife_api.modules.comum.enums.ESituacao;
 import br.com.easy.aalife_api.config.exceptions.NotFoundException;
 import br.com.easy.aalife_api.config.exceptions.ValidationException;
+import br.com.easy.aalife_api.modules.usuario.profissional.dto.UsuarioProfissionalAtualizacaoRequest;
 import br.com.easy.aalife_api.modules.usuario.profissional.dto.UsuarioProfissionalFiltros;
 import br.com.easy.aalife_api.modules.usuario.profissional.dto.UsuarioProfissionalRequest;
 import br.com.easy.aalife_api.modules.usuario.profissional.dto.UsuarioProfissionalResponse;
@@ -41,7 +42,7 @@ public class UsuarioProfissionalService {
         repository.save(profissional);
     }
 
-    public void editar(Integer id, UsuarioProfissionalRequest request) {
+    public void editar(Integer id, UsuarioProfissionalAtualizacaoRequest request) {
         var profissional = findById(id);
 
         validarUsuarioAtivo(profissional.getUsuarioCredenciais().getSituacao());
@@ -95,7 +96,7 @@ public class UsuarioProfissionalService {
     }
 
     private void validarCpfExistente(String cpf) {
-        if (cpf != null && repository.existsByCnpj(cpf)) {
+        if (repository.existsByCnpj(cpf)) {
             throw new ValidationException(EX_USUARIO_JA_CADASTRADO);
         }
     }

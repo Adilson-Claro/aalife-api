@@ -25,6 +25,8 @@ public class UsuarioBaseService {
     private final PasswordEncoder passwordEncoder;
 
     public void salvar(UsuarioBaseRequest request) {
+        validarEmailObrigatorio(request.email());
+        validarSenhaObrigatoria(request.senha());
         validarEmail(request.email());
         validarEmailExistente(request.email());
         var usuario = UsuarioBase.of(request, passwordEncoder);
@@ -61,6 +63,18 @@ public class UsuarioBaseService {
     public UsuarioBase findById(Integer id) {
         return repository.findById(id)
                 .orElseThrow(() -> new ValidationException(EX_USUARIO_NAO_ENCONTRADO));
+    }
+
+    private void validarSenhaObrigatoria(String senha) {
+        if (senha == null || senha.isBlank()) {
+            throw new ValidationException("O campo senha é obrigatório.");
+        }
+    }
+
+    private void validarEmailObrigatorio(String email) {
+        if (email == null || email.isBlank()) {
+            throw new ValidationException("O campo email é obrigatório.");
+        }
     }
 
     private void validarEmailParaAtualizar(String email, Integer id) {

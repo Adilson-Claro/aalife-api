@@ -60,7 +60,7 @@ public class ProfissaoService {
 
     private void validarSituacaoAtiva(ESituacao situacao) {
         if (situacao != ESituacao.A) {
-            throw new ValidationException("Esta profissao se encontra inativa");
+            throw new ValidationException("Esta profissão se encontra inativa.");
         }
     }
 

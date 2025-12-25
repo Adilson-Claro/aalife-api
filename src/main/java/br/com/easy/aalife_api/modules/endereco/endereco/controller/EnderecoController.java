@@ -30,5 +30,4 @@ public class EnderecoController implements IEnderecoController {
     public Page<EnderecoResponse> buscarEndereco(EnderecoFiltros filtros, Pageable pageable) {
         return service.buscarEndereco(filtros, pageable);
     }
-
 }

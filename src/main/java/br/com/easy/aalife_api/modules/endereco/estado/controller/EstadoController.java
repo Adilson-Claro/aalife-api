@@ -20,4 +20,8 @@ public class EstadoController implements IEstadoController {
     public Page<EstadoResponse> buscarEstados(EstadoFiltros filtros, Pageable pageable) {
         return service.buscarEstados(filtros, pageable);
     }
+
+    public Page<EstadoResponse> buscarTodos(Pageable pageable) {
+        return service.buscarTodos(pageable);
+    }
 }

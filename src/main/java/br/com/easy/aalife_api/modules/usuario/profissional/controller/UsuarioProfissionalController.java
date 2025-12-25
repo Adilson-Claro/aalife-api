@@ -1,6 +1,7 @@
 package br.com.easy.aalife_api.modules.usuario.profissional.controller;
 
 import br.com.easy.aalife_api.modules.usuario.profissional.controller.contract.IUsuarioProfissionalController;
+import br.com.easy.aalife_api.modules.usuario.profissional.dto.UsuarioProfissionalAtualizacaoRequest;
 import br.com.easy.aalife_api.modules.usuario.profissional.dto.UsuarioProfissionalFiltros;
 import br.com.easy.aalife_api.modules.usuario.profissional.dto.UsuarioProfissionalRequest;
 import br.com.easy.aalife_api.modules.usuario.profissional.dto.UsuarioProfissionalResponse;
@@ -18,12 +19,13 @@ public class UsuarioProfissionalController implements IUsuarioProfissionalContro
 
     private final UsuarioProfissionalService service;
 
+    @Override
     public void salvar(UsuarioProfissionalRequest request) {
         service.salvar(request);
     }
 
     @Override
-    public void editar(Integer id, UsuarioProfissionalRequest request) {
+    public void editar(Integer id, UsuarioProfissionalAtualizacaoRequest request) {
         service.editar(id, request);
     }
 

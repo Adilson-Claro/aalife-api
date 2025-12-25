@@ -4,6 +4,7 @@ import br.com.easy.aalife_api.modules.comum.enums.*;
 import br.com.easy.aalife_api.modules.endereco.endereco.model.Endereco;
 import br.com.easy.aalife_api.modules.profissao.model.ProfissaoEspecialidade;
 import br.com.easy.aalife_api.modules.usuario.pessoa.juridica.PessoaJuridica;
+import br.com.easy.aalife_api.modules.usuario.profissional.dto.UsuarioProfissionalAtualizacaoRequest;
 import br.com.easy.aalife_api.modules.usuario.profissional.dto.UsuarioProfissionalRequest;
 import br.com.easy.aalife_api.modules.usuario.usuariocredenciais.UsuarioCredenciais;
 import jakarta.persistence.*;
@@ -79,7 +80,7 @@ public class UsuarioProfissional extends PessoaJuridica {
                 .build();
     }
 
-    public void editar(UsuarioProfissionalRequest request, PasswordEncoder passwordEncoder) {
+    public void editar(UsuarioProfissionalAtualizacaoRequest request, PasswordEncoder passwordEncoder) {
         this.nomeProfissional = request.nomeProfissional();
         this.usuarioCredenciais.setSenha(passwordEncoder.encode(request.senha()));
         this.setTelefone(request.telefone());

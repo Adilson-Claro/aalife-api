@@ -17,4 +17,8 @@ public class EstadoService {
     public Page<EstadoResponse> buscarEstados(EstadoFiltros filtros, Pageable pageable) {
         return repository.findAll(filtros.toPredicate(), pageable).map(EstadoResponse::of);
     }
+
+    public Page<EstadoResponse> buscarTodos(Pageable pageable) {
+        return repository.findAll(pageable).map(EstadoResponse::of);
+    }
 }
