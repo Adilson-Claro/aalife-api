@@ -33,7 +33,7 @@ public class UsuarioAdministrador extends PessoaFisica {
     private UsuarioCredenciais usuarioCredenciais;
 
     public static UsuarioAdministrador of(UsuarioAdministradorRequest request, PasswordEncoder passwordEncoder) {
-        var usuarioSistema = UsuarioCredenciais.builder()
+        var usuario = UsuarioCredenciais.builder()
                 .email(request.email())
                 .senha(passwordEncoder.encode(request.senha()))
                 .role(ERole.ADMINISTRADOR)
@@ -46,7 +46,7 @@ public class UsuarioAdministrador extends PessoaFisica {
                 .cpf(request.cpf())
                 .nome(request.nome())
                 .telefone(request.telefone())
-                .usuarioCredenciais(usuarioSistema)
+                .usuarioCredenciais(usuario)
                 .build();
     }
 

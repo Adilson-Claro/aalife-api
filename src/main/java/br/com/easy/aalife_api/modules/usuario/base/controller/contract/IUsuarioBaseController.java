@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 public interface IUsuarioBaseController {
 
-    @PostMapping
+    @PostMapping("salvar")
     @Operation(summary = "Endpoint responsável pelo cadastro de usuário base.")
     void salvar(@RequestBody @Valid UsuarioBaseRequest request);
 

@@ -11,4 +11,5 @@ public class ConstantsUtils {
     public static final String EX_CIDADE_JA_CADASTRADA = "Esta cidade já está cadastrada.";
     public static final String EX_CIDADE_NAO_ENCONTRADA = "Cidade não encontrada.";
     public static final String EX_ENDERECO_NAO_ENCONTRADO = "Endereço não encontrado.";
+    public static final Integer VINTE_E_QUATRO = 24;
 }

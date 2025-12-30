@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 public interface IUsuarioProfissionalController {
 
-    @PostMapping
+    @PostMapping("salvar")
     @Operation(summary = "Endpoint responsável pelo cadastro de um usuário profissional.")
     void salvar(@RequestBody @Valid UsuarioProfissionalRequest request);
 

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Tag(name = "Administrador")
 public interface IUsuarioAdministradorController {
 
-    @PostMapping
+    @PostMapping("salvar")
     @Operation(description = "Endpoint responsável por cadastrar um administrador.")
     void salvar(@RequestBody @Valid UsuarioAdministradorRequest request);
 

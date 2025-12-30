@@ -4,6 +4,8 @@ import br.com.easy.aalife_api.modules.usuario.profissional.model.UsuarioProfissi
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
+import java.util.Optional;
+
 public interface UsuarioProfissionalRepository extends JpaRepository<UsuarioProfissional, Integer>,
         QuerydslPredicateExecutor<UsuarioProfissional> {
 
@@ -18,4 +20,6 @@ public interface UsuarioProfissionalRepository extends JpaRepository<UsuarioProf
     boolean existsByUsuarioCredenciaisEmailAndIdNot(String email, Integer id);
 
     boolean existsByUsuarioCredenciaisEmail(String email);
+
+    Optional<UsuarioProfissional> findByUsuarioCredenciaisEmail(String email);
 }
