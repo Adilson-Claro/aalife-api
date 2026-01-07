@@ -1,20 +1,32 @@
 package br.com.easy.aalife_api.config.auth;
 
+import br.com.easy.aalife_api.config.exceptions.ValidationException;
 import br.com.easy.aalife_api.modules.comum.enums.ERole;
 import br.com.easy.aalife_api.modules.comum.enums.ESituacao;
 import br.com.easy.aalife_api.modules.comum.enums.ETipoUsuario;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
 
-public record UsuarioAutenticado(String email,
-                                 String senha,
-                                 ERole role,
-                                 ETipoUsuario tipoUsuario,
-                                 ESituacao situacao) implements UserDetails {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class UsuarioAutenticado implements UserDetails {
+
+    private String email;
+    private String senha;
+    private ERole role;
+    private ETipoUsuario tipoUsuario;
+    private ESituacao situacao;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -49,5 +61,21 @@ public record UsuarioAutenticado(String email,
     @Override
     public boolean isEnabled() {
         return situacao == ESituacao.A;
+    }
+
+    public void validarAdministrador() {
+        if (this.role != ERole.ADMINISTRADOR) {
+            throw new ValidationException("Acesso negado.");
+        }
+    }
+
+    public static UsuarioAutenticado getUsuarioAutenticado() {
+        var authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication == null || !(authentication.getPrincipal() instanceof UsuarioAutenticado usuario)) {
+            throw new ValidationException("Usuário não autenticado.");
+        }
+
+        return usuario;
     }
 }

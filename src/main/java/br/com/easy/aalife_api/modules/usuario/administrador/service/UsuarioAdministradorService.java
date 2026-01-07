@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import static br.com.easy.aalife_api.modules.comum.utils.ConstantsUtils.EX_USUARIO_NAO_ENCONTRADO;
 import static br.com.easy.aalife_api.modules.comum.utils.ConstantsUtils.EX_USUARIO_JA_CADASTRADO;
+import static br.com.easy.aalife_api.modules.comum.utils.CpfCnpjUtils.validarCpf;
 import static br.com.easy.aalife_api.modules.comum.utils.TelefoneUtils.validarTelefone;
 
 @Service
@@ -22,6 +23,7 @@ public class UsuarioAdministradorService {
 
     public void salvar(UsuarioAdministradorRequest request) {
         validarEmailExistente(request.email());
+        validarCpf(request.cpf());
         validarTelefoneExistente(request.telefone());
         validarTelefone(request.telefone());
         validarCpfExistente(request.cpf());
@@ -34,6 +36,7 @@ public class UsuarioAdministradorService {
     public void editar(Integer id, UsuarioAdministradorRequest request) {
         var administrador = findById(id);
         validarSituacaoAtiva(administrador.getUsuarioCredenciais().getSituacao());
+        validarCpfParaAtualizar(request.cpf(), id);
         validarTelefoneParaAtualizar(request.telefone(), id);
 
         administrador.editar(request, passwordEncoder);
@@ -81,5 +84,11 @@ public class UsuarioAdministradorService {
             throw new ValidationException(EX_USUARIO_JA_CADASTRADO);
         }
         validarTelefone(telefone);
+    }
+
+    private void validarCpfParaAtualizar(String cpf, Integer id) {
+        if (repository.existsByCpfAndIdNot(cpf, id)) {
+            throw new ValidationException(EX_USUARIO_JA_CADASTRADO);
+        }
     }
 }
