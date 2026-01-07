@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import static br.com.easy.aalife_api.config.auth.UsuarioAutenticado.getUsuarioAutenticado;
 import static br.com.easy.aalife_api.modules.comum.utils.ConstantsUtils.EX_USUARIO_JA_CADASTRADO;
 import static br.com.easy.aalife_api.modules.comum.utils.ConstantsUtils.EX_USUARIO_NAO_ENCONTRADO;
 import static br.com.easy.aalife_api.modules.comum.utils.EmailUtils.validarEmail;
@@ -26,7 +27,6 @@ public class UsuarioBaseService {
 
     public void salvar(UsuarioBaseRequest request) {
         validarEmailObrigatorio(request.email());
-        validarSenhaObrigatoria(request.senha());
         validarEmail(request.email());
         validarEmailExistente(request.email());
         var usuario = UsuarioBase.of(request, passwordEncoder);
@@ -46,6 +46,9 @@ public class UsuarioBaseService {
 
     public void alterarSituacao(Integer id) {
         var usuario = findById(id);
+
+        getUsuarioAutenticado().validarAdministrador();
+
         usuario.alterarSituacao();
         repository.save(usuario);
     }
@@ -63,12 +66,6 @@ public class UsuarioBaseService {
     public UsuarioBase findById(Integer id) {
         return repository.findById(id)
                 .orElseThrow(() -> new ValidationException(EX_USUARIO_NAO_ENCONTRADO));
-    }
-
-    private void validarSenhaObrigatoria(String senha) {
-        if (senha == null || senha.isBlank()) {
-            throw new ValidationException("O campo senha é obrigatório.");
-        }
     }
 
     private void validarEmailObrigatorio(String email) {
