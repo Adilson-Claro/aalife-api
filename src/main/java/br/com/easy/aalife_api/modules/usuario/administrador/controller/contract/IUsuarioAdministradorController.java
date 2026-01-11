@@ -1,5 +1,6 @@
 package br.com.easy.aalife_api.modules.usuario.administrador.controller.contract;
 
+import br.com.easy.aalife_api.modules.usuario.administrador.dto.UsuarioAdministradorAtualizacaoRequest;
 import br.com.easy.aalife_api.modules.usuario.administrador.dto.UsuarioAdministradorRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -18,7 +19,11 @@ public interface IUsuarioAdministradorController {
 
     @PutMapping("{id}/editar")
     @Operation(description = "Endpoint responsável por editar um administrador.")
-    void editar(@PathVariable Integer id, @RequestBody UsuarioAdministradorRequest request);
+    void editar(@PathVariable Integer id, @RequestBody UsuarioAdministradorAtualizacaoRequest request);
+
+    @PutMapping("{id}/editar-senha")
+    @Operation(description = "Endpoint responsável por editar a senha de um administrador.")
+    void editarSenha(@PathVariable Integer id, @RequestBody UsuarioAdministradorAtualizacaoRequest request);
 
     @PutMapping("{id}")
     @Operation(description = "Endpoint responsável por alterar a situação de um administrador.")

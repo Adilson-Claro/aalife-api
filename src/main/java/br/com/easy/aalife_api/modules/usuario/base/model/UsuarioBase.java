@@ -13,6 +13,8 @@ import lombok.experimental.SuperBuilder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
+import java.util.function.Consumer;
 
 @Getter
 @Setter
@@ -55,17 +57,26 @@ public class UsuarioBase extends PessoaFisica {
                 .build();
     }
 
-    public void editar(UsuarioBaseRequest request, PasswordEncoder passwordEncoder) {
-        this.setNome(request.nome());
-        this.usuarioCredenciais.setEmail(request.email());
-        this.setAltura(request.altura());
-        this.setPeso(request.peso());
-        this.setIdade(request.idade());
-        this.setDataNascimento(request.dataNascimento());
-        this.usuarioCredenciais.setSenha(passwordEncoder.encode(request.senha()));
+    public void editar(UsuarioBaseRequest request) {
+        applyIfNotNull(request.nome(), this::setNome);
+        applyIfNotNull(request.altura(), this::setAltura);
+        applyIfNotNull(request.peso(), this::setPeso);
+        applyIfNotNull(request.idade(), this::setIdade);
+        applyIfNotNull(request.dataNascimento(), this::setDataNascimento);
+
+        applyIfNotNull(request.email(),
+                email -> this.usuarioCredenciais.setEmail(email));
+    }
+
+    public void editarSenha(String senha, PasswordEncoder passwordEncoder) {
+        this.usuarioCredenciais.setSenha(passwordEncoder.encode(senha));
     }
 
     public void alterarSituacao() {
         this.usuarioCredenciais.setSituacao(this.usuarioCredenciais.getSituacao() == ESituacao.A ? ESituacao.I : ESituacao.A);
+    }
+
+    private <T> void applyIfNotNull(T value, Consumer<T> setter) {
+        Optional.ofNullable(value).ifPresent(setter);
     }
 }

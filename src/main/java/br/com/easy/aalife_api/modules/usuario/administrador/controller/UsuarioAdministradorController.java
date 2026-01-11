@@ -1,6 +1,7 @@
 package br.com.easy.aalife_api.modules.usuario.administrador.controller;
 
 import br.com.easy.aalife_api.modules.usuario.administrador.controller.contract.IUsuarioAdministradorController;
+import br.com.easy.aalife_api.modules.usuario.administrador.dto.UsuarioAdministradorAtualizacaoRequest;
 import br.com.easy.aalife_api.modules.usuario.administrador.dto.UsuarioAdministradorRequest;
 import br.com.easy.aalife_api.modules.usuario.administrador.service.UsuarioAdministradorService;
 import lombok.RequiredArgsConstructor;
@@ -14,14 +15,22 @@ public class UsuarioAdministradorController implements IUsuarioAdministradorCont
 
     private final UsuarioAdministradorService service;
 
+    @Override
     public void salvar(UsuarioAdministradorRequest request) {
         service.salvar(request);
     }
 
-    public void editar(Integer id, UsuarioAdministradorRequest request) {
+    @Override
+    public void editar(Integer id, UsuarioAdministradorAtualizacaoRequest request) {
         service.editar(id, request);
     }
 
+    @Override
+    public void editarSenha(Integer id, UsuarioAdministradorAtualizacaoRequest request) {
+        service.editarSenha(id, request);
+    }
+
+    @Override
     public void alterarSituacao(Integer id) {
         service.alterarSituacao(id);
     }

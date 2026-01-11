@@ -2,6 +2,7 @@ package br.com.easy.aalife_api.modules.usuario.administrador.service;
 
 import br.com.easy.aalife_api.modules.comum.enums.ESituacao;
 import br.com.easy.aalife_api.config.exceptions.ValidationException;
+import br.com.easy.aalife_api.modules.usuario.administrador.dto.UsuarioAdministradorAtualizacaoRequest;
 import br.com.easy.aalife_api.modules.usuario.administrador.dto.UsuarioAdministradorRequest;
 import br.com.easy.aalife_api.modules.usuario.administrador.model.UsuarioAdministrador;
 import br.com.easy.aalife_api.modules.usuario.administrador.repository.UsuarioAdministradorRepository;
@@ -9,6 +10,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
+import static br.com.easy.aalife_api.config.auth.UsuarioAutenticado.getUsuarioAutenticado;
 import static br.com.easy.aalife_api.modules.comum.utils.ConstantsUtils.EX_USUARIO_NAO_ENCONTRADO;
 import static br.com.easy.aalife_api.modules.comum.utils.ConstantsUtils.EX_USUARIO_JA_CADASTRADO;
 import static br.com.easy.aalife_api.modules.comum.utils.CpfCnpjUtils.validarCpf;
@@ -28,20 +32,20 @@ public class UsuarioAdministradorService {
         validarTelefone(request.telefone());
         validarCpfExistente(request.cpf());
 
-        var administrador = UsuarioAdministrador.of(request, passwordEncoder);
+        var usuario = UsuarioAdministrador.of(request, passwordEncoder);
 
-        repository.save(administrador);
+        repository.save(usuario);
     }
 
-    public void editar(Integer id, UsuarioAdministradorRequest request) {
-        var administrador = findById(id);
-        validarSituacaoAtiva(administrador.getUsuarioCredenciais().getSituacao());
-        validarCpfParaAtualizar(request.cpf(), id);
+    public void editar(Integer id, UsuarioAdministradorAtualizacaoRequest request) {
+        var usuario = findById(id);
+        validarUsuarioAtual(usuario.getId());
+        validarSituacaoAtiva(usuario.getUsuarioCredenciais().getSituacao());
         validarTelefoneParaAtualizar(request.telefone(), id);
 
-        administrador.editar(request, passwordEncoder);
+        usuario.editar(request);
 
-        repository.save(administrador);
+        repository.save(usuario);
     }
 
     public void alterarSituacao(Integer id) {
@@ -50,9 +54,25 @@ public class UsuarioAdministradorService {
         repository.save(usuario);
     }
 
+    public void editarSenha(Integer id, UsuarioAdministradorAtualizacaoRequest request) {
+        var usuario = findById(id);
+        validarUsuarioAtual(usuario.getId());
+
+        usuario.editarSenha(request.senha(), passwordEncoder);
+
+        repository.save(usuario);
+    }
+
     private void validarSituacaoAtiva(ESituacao situacao) {
         if (situacao != ESituacao.A) {
             throw new ValidationException("Não é possivel atualizar um usuário inativo.");
+        }
+    }
+
+    private void validarUsuarioAtual(Integer usuarioId) {
+        var usuario = getUsuarioAutenticado();
+        if (!Objects.equals(usuario.getId(), usuarioId)) {
+            throw new ValidationException("Usuario sem permissao sobre a entidade requisitada.");
         }
     }
 
@@ -84,11 +104,5 @@ public class UsuarioAdministradorService {
             throw new ValidationException(EX_USUARIO_JA_CADASTRADO);
         }
         validarTelefone(telefone);
-    }
-
-    private void validarCpfParaAtualizar(String cpf, Integer id) {
-        if (repository.existsByCpfAndIdNot(cpf, id)) {
-            throw new ValidationException(EX_USUARIO_JA_CADASTRADO);
-        }
     }
 }

@@ -29,6 +29,11 @@ public class UsuarioBaseController implements IUsuarioBaseController {
     }
 
     @Override
+    public void editarSenha(Integer id, UsuarioBaseRequest request) {
+        service.editarSenha(id, request);
+    }
+
+    @Override
     public void alterarSituacao(Integer id) {
         service.alterarSituacao(id);
     }

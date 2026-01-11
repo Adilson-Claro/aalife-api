@@ -20,6 +20,10 @@ public interface IUsuarioProfissionalController {
     @Operation(summary = "Endpoint responsável pela edição de um usuário profissional.")
     void editar(@PathVariable Integer id, @RequestBody UsuarioProfissionalAtualizacaoRequest request);
 
+    @PutMapping("{id}/alterar-senha")
+    @Operation(summary = "Enpoint responsável por editar a senha de um profissional.")
+    void editarSenha(@PathVariable Integer id, @RequestBody UsuarioProfissionalAtualizacaoRequest request);
+
     @PutMapping("{id}/alterar-situacao")
     @Operation(summary = "Endpoint responsável por alterar a situação de um usuário profissional.")
     void alterarSituacao(@PathVariable Integer id);

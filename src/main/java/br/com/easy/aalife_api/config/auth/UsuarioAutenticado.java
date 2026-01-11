@@ -22,6 +22,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UsuarioAutenticado implements UserDetails {
 
+    private Integer id;
     private String email;
     private String senha;
     private ERole role;
