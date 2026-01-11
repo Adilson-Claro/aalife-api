@@ -15,6 +15,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
+import static br.com.easy.aalife_api.config.auth.UsuarioAutenticado.getUsuarioAutenticado;
 import static br.com.easy.aalife_api.modules.comum.validator.AreaSaudeValidator.validarOrgaoRegulamentador;
 import static br.com.easy.aalife_api.modules.comum.utils.ConstantsUtils.EX_USUARIO_JA_CADASTRADO;
 import static br.com.easy.aalife_api.modules.comum.utils.ConstantsUtils.EX_USUARIO_NAO_ENCONTRADO;
@@ -50,9 +53,18 @@ public class UsuarioProfissionalService {
         validarTelefoneParaAtualizar(request.telefone(), id);
         validarEmailParaAtualizar(request.email(), profissional.getId());
 
-        profissional.editar(request, passwordEncoder);
+        profissional.editar(request);
 
         repository.save(profissional);
+    }
+
+    public void editarSenha(Integer id, UsuarioProfissionalAtualizacaoRequest request) {
+        var usuario = findById(id);
+        validarUsuarioAtual(usuario.getId());
+
+        usuario.editarSenha(request.senha(), passwordEncoder);
+
+        repository.save(usuario);
     }
 
     public void alterarSituacao(Integer id) {
@@ -80,6 +92,13 @@ public class UsuarioProfissionalService {
     private void validarUsuarioAtivo(ESituacao situacao) {
         if (situacao != ESituacao.A) {
             throw new ValidationException("Usuário inativo.");
+        }
+    }
+
+    private void validarUsuarioAtual(Integer usuarioId) {
+        var usuario = getUsuarioAutenticado();
+        if (!Objects.equals(usuario.getId(), usuarioId)) {
+            throw new ValidationException("Usuario sem permissao sobre a entidade requisitada.");
         }
     }
 

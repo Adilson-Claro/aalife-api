@@ -13,6 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 import static br.com.easy.aalife_api.config.auth.UsuarioAutenticado.getUsuarioAutenticado;
 import static br.com.easy.aalife_api.modules.comum.utils.ConstantsUtils.EX_USUARIO_JA_CADASTRADO;
 import static br.com.easy.aalife_api.modules.comum.utils.ConstantsUtils.EX_USUARIO_NAO_ENCONTRADO;
@@ -36,10 +38,24 @@ public class UsuarioBaseService {
 
     public void editar(Integer id, UsuarioBaseRequest request) {
         var usuario = findById(id);
+        validarUsuarioAtual(usuario.getId());
         validarUsuarioAtivo(usuario.getUsuarioCredenciais().getSituacao());
-        validarEmailParaAtualizar(request.email(), id);
 
-        usuario.editar(request, passwordEncoder);
+        if (request.email() != null && !request.email().isBlank()) {
+            validarEmailParaAtualizar(request.email(), id);
+            validarEmail(request.email());
+        }
+
+        usuario.editar(request);
+
+        repository.save(usuario);
+    }
+
+    public void editarSenha(Integer id, UsuarioBaseRequest request) {
+        var usuario = findById(id);
+        validarUsuarioAtual(usuario.getId());
+
+        usuario.editarSenha(request.senha(), passwordEncoder);
 
         repository.save(usuario);
     }
@@ -66,6 +82,13 @@ public class UsuarioBaseService {
     public UsuarioBase findById(Integer id) {
         return repository.findById(id)
                 .orElseThrow(() -> new ValidationException(EX_USUARIO_NAO_ENCONTRADO));
+    }
+
+    private void validarUsuarioAtual(Integer usuarioId) {
+        var usuario = getUsuarioAutenticado();
+        if (!Objects.equals(usuario.getId(), usuarioId)) {
+            throw new ValidationException("Usuario sem permissao sobre a entidade requisitada.");
+        }
     }
 
     private void validarEmailObrigatorio(String email) {

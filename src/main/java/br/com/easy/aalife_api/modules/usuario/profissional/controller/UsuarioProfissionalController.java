@@ -30,6 +30,11 @@ public class UsuarioProfissionalController implements IUsuarioProfissionalContro
     }
 
     @Override
+    public void editarSenha(Integer id, UsuarioProfissionalAtualizacaoRequest request) {
+        service.editarSenha(id, request);
+    }
+
+    @Override
     public void alterarSituacao(Integer id) {
         service.alterarSituacao(id);
     }

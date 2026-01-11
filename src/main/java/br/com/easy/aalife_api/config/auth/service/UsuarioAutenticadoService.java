@@ -23,17 +23,18 @@ public class UsuarioAutenticadoService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) {
         return administradorRepository.findByUsuarioCredenciaisEmail(email)
-                .map(administrador -> of(administrador.getUsuarioCredenciais(), ETipoUsuario.ADMINISTRADOR))
+                .map(administrador -> of(administrador.getUsuarioCredenciais(), ETipoUsuario.ADMINISTRADOR, administrador.getId()))
                 .or(() -> profissionalRepository.findByUsuarioCredenciaisEmail(email)
-                        .map(profissional -> of(profissional.getUsuarioCredenciais(), ETipoUsuario.PROFISSIONAL)))
+                        .map(profissional -> of(profissional.getUsuarioCredenciais(), ETipoUsuario.PROFISSIONAL, profissional.getId())))
                 .or(() -> usuarioBaseRepository.findByUsuarioCredenciaisEmail(email)
-                        .map(base -> of(base.getUsuarioCredenciais(), ETipoUsuario.BASE)))
+                        .map(base -> of(base.getUsuarioCredenciais(), ETipoUsuario.BASE, base.getId())))
                 .orElseThrow(() ->
                         new NotFoundException("Usuário não encontrado"));
     }
 
-    private UsuarioAutenticado of(UsuarioCredenciais credenciais, ETipoUsuario tipo) {
+    private UsuarioAutenticado of(UsuarioCredenciais credenciais, ETipoUsuario tipo, Integer id) {
         return new UsuarioAutenticado(
+                id,
                 credenciais.getEmail(),
                 credenciais.getSenha(),
                 credenciais.getRole(),

@@ -16,6 +16,8 @@ import lombok.experimental.SuperBuilder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
+import java.util.function.Consumer;
 
 @Getter
 @Setter
@@ -80,16 +82,24 @@ public class UsuarioProfissional extends PessoaJuridica {
                 .build();
     }
 
-    public void editar(UsuarioProfissionalAtualizacaoRequest request, PasswordEncoder passwordEncoder) {
-        this.nomeProfissional = request.nomeProfissional();
-        this.usuarioCredenciais.setSenha(passwordEncoder.encode(request.senha()));
-        this.setTelefone(request.telefone());
-        this.usuarioCredenciais.setEmail(request.email());
+    public void editar(UsuarioProfissionalAtualizacaoRequest request) {
+        applyIfNotNull(request.nomeProfissional(), this::setNomeProfissional);
+        applyIfNotNull(request.telefone(), this::setTelefone);
+        applyIfNotNull(request.email(),
+                email -> this.usuarioCredenciais.setEmail(email));
+    }
+
+    public void editarSenha(String senha, PasswordEncoder passwordEncoder) {
+        this.usuarioCredenciais.setSenha(passwordEncoder.encode(senha));
     }
 
     public void alterarSituacao() {
         this.usuarioCredenciais.setSituacao(
                 this.usuarioCredenciais.getSituacao() == ESituacao.A ? ESituacao.I : ESituacao.A
         );
+    }
+
+    private <T> void applyIfNotNull(T value, Consumer<T> setter) {
+        Optional.ofNullable(value).ifPresent(setter);
     }
 }

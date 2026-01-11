@@ -1,5 +1,6 @@
 package br.com.easy.aalife_api.modules.usuario.base.controller.contract;
 
+import br.com.easy.aalife_api.modules.comum.annotations.ValidarSenha;
 import br.com.easy.aalife_api.modules.usuario.base.dto.UsuarioBaseFiltros;
 import br.com.easy.aalife_api.modules.usuario.base.dto.UsuarioBaseRequest;
 import br.com.easy.aalife_api.modules.usuario.base.dto.UsuarioBaseResponse;
@@ -18,6 +19,10 @@ public interface IUsuarioBaseController {
     @PutMapping("{id}/editar")
     @Operation(summary = "Endpoint responsável pela edicao de usuários base.")
     void editar(@PathVariable Integer id, @RequestBody UsuarioBaseRequest request);
+
+    @PutMapping("{id}/editar-senha")
+    @Operation(summary = "Endpoint responsável por editar a senha de um usuario base")
+    void editarSenha(@PathVariable Integer id, @RequestBody UsuarioBaseRequest request);
 
     @PutMapping("{id}/alterar-situacao")
     @Operation(summary = "Endpoint responsável por alterar a situação de um usuário base.")
