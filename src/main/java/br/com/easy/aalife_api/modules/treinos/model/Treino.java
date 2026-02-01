@@ -34,30 +34,31 @@ public class Treino {
     @Column(name = "exercicio")
     private EExercicio exercicio;
 
-    @Column(name = "img_exercicio_url")
-    private String imagemExercicioUrl;
+    @Column(name = "url_img_exercicio")
+    private String urlImagemExercicio;
 
-    @Column(name = "video_exercicio_url")
-    private String videoExercicioUrl;
+    @Column(name = "url_video_exercicio")
+    private String urlVideoExercicio;
 
-    public static Treino of(TreinoRequest request, String imagemExercicioUrl, String videoExercicioUrl) {
+    public static Treino of(TreinoRequest request, String urlImagemExercicio, String urlVideoExercicio) {
         return Treino.builder()
                 .nome(request.nome())
                 .series(request.series())
                 .peso(request.peso())
                 .grupoMuscular(request.grupoMuscular())
                 .exercicio(request.exercicio())
-                .imagemExercicioUrl(imagemExercicioUrl)
-                .videoExercicioUrl(videoExercicioUrl)
+                .urlImagemExercicio(urlImagemExercicio)
+                .urlVideoExercicio(urlVideoExercicio)
                 .build();
     }
 
-    public void editar(TreinoRequest request, String imagemExercicioUrl, String videoExercicioUrl) {
+    public void editar(TreinoRequest request, String urlImagemExercicio, String urlVideoExercicio) {
         this.exercicio = request.exercicio();
         this.grupoMuscular = request.grupoMuscular();
         this.nome = request.nome();
         this.peso = request.peso();
-        this.imagemExercicioUrl = imagemExercicioUrl;
-        this.videoExercicioUrl = videoExercicioUrl;
+        this.series = request.series();
+        this.urlImagemExercicio = urlImagemExercicio;
+        this.urlVideoExercicio = urlVideoExercicio;
     }
 }

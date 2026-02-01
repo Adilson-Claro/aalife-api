@@ -2,6 +2,7 @@ package br.com.easy.aalife_api.modules.treinos.service;
 
 import br.com.easy.aalife_api.config.exceptions.NotFoundException;
 import br.com.easy.aalife_api.modules.treinos.dto.TreinoRequest;
+import br.com.easy.aalife_api.modules.treinos.dto.TreinoResponse;
 import br.com.easy.aalife_api.modules.treinos.model.Treino;
 import br.com.easy.aalife_api.modules.treinos.repository.TreinoRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,12 @@ public class TreinoService {
         treino.editar(request, imagemExercicioUrl, videoExercicioUrl);
 
         repository.save(treino);
+    }
+
+    public TreinoResponse getTreinoById(Integer id) {
+        var treino = findById(id);
+
+        return TreinoResponse.of(treino);
     }
 
     public Treino findById(Integer id) {
