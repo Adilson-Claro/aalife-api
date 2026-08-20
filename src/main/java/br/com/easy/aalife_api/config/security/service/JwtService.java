@@ -1,4 +1,4 @@
-package br.com.easy.aalife_api.security.service;
+package br.com.easy.aalife_api.config.security.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

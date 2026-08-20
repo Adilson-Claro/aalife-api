@@ -6,7 +6,7 @@ CREATE TABLE usuario (
     email           VARCHAR(160)  NOT NULL UNIQUE,
     senha           VARCHAR(255)  NOT NULL,
     role            VARCHAR(30)   NOT NULL,
-    ativo           BOOLEAN       NOT NULL,
+    situacao        VARCHAR(30)   NOT NULL,
     data_cadastro   TIMESTAMP     NOT NULL
 );
 

@@ -1,6 +1,6 @@
-package br.com.easy.aalife_api.security.service;
+package br.com.easy.aalife_api.config.security.service;
 
-import br.com.easy.aalife_api.security.repository.UsuarioRepository;
+import br.com.easy.aalife_api.modules.usuario.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

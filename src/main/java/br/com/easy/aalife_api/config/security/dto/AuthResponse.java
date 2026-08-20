@@ -1,4 +1,4 @@
-package br.com.easy.aalife_api.security.dto;
+package br.com.easy.aalife_api.config.security.dto;
 
 public record AuthResponse(String accessToken,
                            String refreshToken,

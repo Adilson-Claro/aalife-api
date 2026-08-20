@@ -1,6 +1,6 @@
-package br.com.easy.aalife_api.security.repository;
+package br.com.easy.aalife_api.modules.usuario.repository;
 
-import br.com.easy.aalife_api.security.model.Usuario;
+import br.com.easy.aalife_api.modules.usuario.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

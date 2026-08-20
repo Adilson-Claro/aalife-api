@@ -1,6 +1,6 @@
 package br.com.easy.aalife_api.config;
 
-import br.com.easy.aalife_api.security.filter.JwtAuthFilter;
+import br.com.easy.aalife_api.config.security.filter.JwtAuthFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

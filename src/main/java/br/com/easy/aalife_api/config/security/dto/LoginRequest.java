@@ -1,4 +1,4 @@
-package br.com.easy.aalife_api.security.dto;
+package br.com.easy.aalife_api.config.security.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
