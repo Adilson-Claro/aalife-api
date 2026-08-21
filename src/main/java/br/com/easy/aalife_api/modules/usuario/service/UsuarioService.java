@@ -3,6 +3,7 @@ package br.com.easy.aalife_api.modules.usuario.service;
 import br.com.easy.aalife_api.modules.comum.exceptions.ValidationException;
 import br.com.easy.aalife_api.modules.usuario.dto.UsuarioRequest;
 import br.com.easy.aalife_api.modules.usuario.enums.EAreaSaude;
+import br.com.easy.aalife_api.modules.usuario.enums.ETipoUsuario;
 import br.com.easy.aalife_api.modules.usuario.model.Usuario;
 import br.com.easy.aalife_api.modules.usuario.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,14 +19,14 @@ public class UsuarioService {
     private final PasswordEncoder passwordEncoder;
     private final UsuarioRepository usuarioRepository;
 
-    public void salvar(UsuarioRequest request) {
-        verificarTipoUsuario(request);
-        var usuario = Usuario.of(request, passwordEncoder.encode(request.senha()));
+    public void salvar(UsuarioRequest request, ETipoUsuario tipoUsuario) {
+        verificarTipoUsuario(request, tipoUsuario);
+        var usuario = Usuario.of(request, passwordEncoder.encode(request.senha()), tipoUsuario);
         usuarioRepository.save(usuario);
     }
 
-    private void verificarTipoUsuario(UsuarioRequest request) {
-        switch (request.tipoUsuario()) {
+    private void verificarTipoUsuario(UsuarioRequest request, ETipoUsuario tipoUsuario) {
+        switch (tipoUsuario) {
             case ADMINISTRADOR:
                 validarDadosAdministrador(request);
                 break;

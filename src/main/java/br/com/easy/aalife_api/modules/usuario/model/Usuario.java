@@ -10,11 +10,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
+import static br.com.easy.aalife_api.modules.usuario.enums.ERole.COMUM;
 import static br.com.easy.aalife_api.modules.usuario.enums.ESituacao.ATIVO;
 
 @Entity
@@ -52,7 +54,7 @@ public class Usuario implements UserDetails {
     private LocalDateTime dataCadastro;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "TIPO_CONTRATO")
+    @Column(name = "TIPO_ORGAO_REGULAMENTADOR")
     private ETipoOrgaoRegulamentador tipoOrgaoRegulamentador;
 
     @Column(unique = true)
@@ -75,21 +77,26 @@ public class Usuario implements UserDetails {
     @Column(name = "NUMERO_ORGAO_REGULAMENTADOR")
     private Integer numeroOrgaoRegulamentador;
 
-    private Double peso;
+    @Column(name = "peso", columnDefinition = "numeric")
+    private BigDecimal peso;
 
-    private Double altura;
+    @Column(name = "altura", columnDefinition = "numeric")
+    private BigDecimal altura;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "TIPO_USUARIO")
     private ETipoUsuario tipoUsuario;
 
-    public static Usuario of(UsuarioRequest request, String senha) {
+    @Enumerated(EnumType.STRING)
+    private ESexo sexo;
+
+    public static Usuario of(UsuarioRequest request, String senha, ETipoUsuario tipoUsuario) {
         return Usuario.builder()
                 .nome(request.nome())
                 .email(request.email())
                 .senha(senha)
                 .dataCadastro(LocalDateTime.now())
-                .role(ERole.USER)
+                .role(COMUM)
                 .situacao(ATIVO)
                 .tipoOrgaoRegulamentador(request.tipoOrgaoRegulamentador())
                 .cpf(request.cpf())
@@ -100,7 +107,8 @@ public class Usuario implements UserDetails {
                 .numeroOrgaoRegulamentador(request.numeroOrgaoRegulamentador())
                 .peso(request.peso())
                 .altura(request.altura())
-                .tipoUsuario(request.tipoUsuario())
+                .tipoUsuario(tipoUsuario)
+                .sexo(request.sexo())
                 .build();
     }
 

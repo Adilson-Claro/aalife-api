@@ -1,13 +1,16 @@
 package br.com.easy.aalife_api.modules.usuario.dto;
 
 import br.com.easy.aalife_api.modules.usuario.enums.EAreaSaude;
+import br.com.easy.aalife_api.modules.usuario.enums.ESexo;
 import br.com.easy.aalife_api.modules.usuario.enums.ETipoOrgaoRegulamentador;
 import br.com.easy.aalife_api.modules.usuario.enums.ETipoUsuario;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public record UsuarioRequest(@NotBlank String nome,
@@ -21,7 +24,7 @@ public record UsuarioRequest(@NotBlank String nome,
                              LocalDate dataNascimento,
                              EAreaSaude areaSaude,
                              Integer numeroOrgaoRegulamentador,
-                             Double altura,
-                             Double peso,
-                             ETipoUsuario tipoUsuario) {
+                             BigDecimal altura,
+                             BigDecimal peso,
+                             ESexo sexo) {
 }

@@ -18,9 +18,8 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
 
     public AuthResponse login(LoginRequest request) {
-        authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(request.email(), request.senha()));
-
+        var usernamePassword = new UsernamePasswordAuthenticationToken(request.email(), request.senha());
+        authenticationManager.authenticate(usernamePassword);
         var usuario = service.buscarUsuarioPorEmail(request.email());
         return gerarTokens(usuario);
     }
