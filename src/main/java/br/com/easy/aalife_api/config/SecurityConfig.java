@@ -40,6 +40,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(ROTAS_PUBLICAS).permitAll()
                         .requestMatchers("/api/usuario/**").permitAll()
+                        .requestMatchers("/api/treino/**").permitAll()
                         .anyRequest().denyAll()
                 )
                 .sessionManagement(session -> session
